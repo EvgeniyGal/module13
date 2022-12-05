@@ -7,6 +7,7 @@ import edu.goit.galamaga.module13.comment.Comment;
 import edu.goit.galamaga.module13.todos.Todos;
 import edu.goit.galamaga.module13.user.User;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -151,6 +152,11 @@ public class HTTPUtil {
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
+
+        File theDir = new File("src/main/resources");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
 
         try (FileWriter fileWriter = new FileWriter("src/main/resources/user-" + userId +
                 "-post-" + lastPostID + ".json")
